@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Reservations</h1>
+<h1>Lista rezerwacji</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Room</th>
-      <th>User</th>
+      <th>Na imię</th>
+      <th>Rezerwacja od</th>
+      <th>Długość rezerwacji</th>
+      <th>Pokój </th>
+      
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,12 +19,12 @@
       <tr>
         <td><%= reservation.name %></td>
         <td><%= reservation.start %></td>
-        <td><%= reservation.end %></td>
+        <td><%= reservation.days.to_s + " (doby hotelowe)"%></td>
         <td><%= reservation.room %></td>
-        <td><%= reservation.user %></td>
-        <td><%= link_to 'Show', reservation %></td>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        
+        <td><%= link_to 'Szczegóły rezerwacji', reservation %></td>
+        <td><%= link_to 'Edytuj rezerwację', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Odwołaj rezerwację', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,17 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Number:</strong>
-  <%= @room.number %>
-</p>
-
-<p>
-  <strong>Floor:</strong>
+  <strong>Piętro:</strong>
   <%= @room.floor %>
 </p>
 
 <p>
-  <strong>Places:</strong>
+  <strong>Miejsca:</strong>
   <%= @room.places %>
 </p>
 
@@ -20,5 +15,5 @@
   <%= @room.standard %>
 </p>
 
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<%= link_to 'Edytuj', edit_room_path(@room) %> |
+<%= link_to 'Powrót', rooms_path %>

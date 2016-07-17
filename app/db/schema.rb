@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713182044) do
+ActiveRecord::Schema.define(version: 20160716042046) do
 
   create_table "reservations", force: :cascade do |t|
     t.string   "name"
     t.date     "start"
-    t.date     "end"
+    t.integer  "days"
     t.integer  "room_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20160713182044) do
   add_index "reservations", ["user_id"], name: "index_reservations_on_user_id"
 
   create_table "rooms", force: :cascade do |t|
-    t.integer  "number"
     t.integer  "floor"
     t.integer  "places"
     t.string   "standard"

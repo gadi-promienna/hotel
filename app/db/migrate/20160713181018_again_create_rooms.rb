@@ -1,4 +1,4 @@
-class CreateRooms < ActiveRecord::Migration
+class AgainCreateRooms < ActiveRecord::Migration
   def change
     create_table :rooms do |t|
       t.integer :number

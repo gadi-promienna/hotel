@@ -25,7 +25,9 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
-
+    #@reservation["end"] =  @reservation["start"] + @reservation["end"].to_day
+    #Wyliczenie upływu rezerwacji poprzez dodanie dni rezerwacji do początku rezerwacji.
+    #@reservation["end"] = @reservation["start"] + (@reservation["end"]).days
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
@@ -69,6 +71,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:name, :start, :end, :room_id, :user_id)
+      params.require(:reservation).permit(:name, :start, :days, :room_id, :user_id)
     end
 end

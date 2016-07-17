@@ -12,26 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label "Na imię/nazwisko/nick" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :start %><br>
+    <%= f.label "Początek rezerwacji" %><br>
     <%= f.date_select :start %>
   </div>
   <div class="field">
-    <%= f.label :end %><br>
-    <%= f.date_select :end %>
+    <%= f.label "Doby hotelowe" %><br>
+    <%= f.number_field :days, :min=>'1', :max=>'365' %>
+
   </div>
-  <div class="field">
-    <%= f.label :room_id %><br>
-    <%= f.text_field :room_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
+  <div class="Numer pokoju">
+    <%= f.label :Pokój %><br>
+    <%= f.select :room_id, options_for_select(Room.all.map{|r| ["nr #{r.id.to_s}, #{r.places.to_s}-osobowy, standard: #{r.standard}, #{r.floor} piętro", r.id]}) %>
+  </div> <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit("Rezerwuj") %>
   </div>
 <% end %>
