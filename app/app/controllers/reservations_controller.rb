@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
 
   # GET /reservations
   # GET /reservations.json
@@ -25,12 +26,11 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
-    #@reservation["end"] =  @reservation["start"] + @reservation["end"].to_day
-    #Wyliczenie upływu rezerwacji poprzez dodanie dni rezerwacji do początku rezerwacji.
-    #@reservation["end"] = @reservation["start"] + (@reservation["end"]).days
+    #automatyczne zapisywanie osoby robiącej rejestrację
+    @reservation["user_id"] = current_user.id
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to @reservation, notice: 'Rezerwacja została dodana.' }
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
+        format.html { redirect_to @reservation, notice: 'Rezerwacja została zaktualizowana.' }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to reservations_url, notice: 'Rezrwacja została usunięta.' }
       format.json { head :no_content }
     end
   end
@@ -72,5 +72,13 @@ class ReservationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
       params.require(:reservation).permit(:name, :start, :days, :room_id, :user_id)
+    end
+
+    #Funkcja sprawdzająca, czy użytkownik jest zalogowany.
+    def require_login
+      unless current_user
+        flash[:error] = "Musisz być zalogowany, żeby wykonać tą akcję."
+        redirect_to new_session_url # halts request cycle
+      end
     end
 end

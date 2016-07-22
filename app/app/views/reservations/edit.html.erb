@@ -1,6 +1,10 @@
+<% if current_user %>
 <h1>Edytuj rezerwację</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Szczegóły rezerwacji', @reservation %> |
-<%= link_to 'Powrót', reservations_path %>
+
+<%= link_to 'Szczegóły rezerwacji', @reservation %> |<%= link_to 'Anuluj', root_path %>
+
+
+<% end %>

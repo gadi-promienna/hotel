@@ -1,5 +1,7 @@
 <!-- app/views/sessions/new.html.erb -->
-
+<% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name %>
+ <% end %>
 <h1>Logowanie</h1>
 
 <%= form_tag '/login' do %>

@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
-  <strong>Na imię/nazwisko/nick:</strong>
+  <strong>Na nazwisko:</strong>
   <%= @reservation.name %>
 </p>
 
@@ -18,13 +18,14 @@
 
 <p>
   <strong>Pokój: </strong>
-  <%= @reservation.room %>
+  <%= @reservation.room_id %>
 </p>
 
 <p>
   <strong>Osoba rejestrująca:</strong>
-  <%= @reservation.user %>
+  <%= if(@reservation.user) then @reservation.user.name_and_surname end %>
 </p>
 
-<%= link_to 'Edytuj rezerwację', edit_reservation_path(@reservation) %> |
-<%= link_to 'Powrót', reservations_path %>
+<%= link_to 'Edytuj rezerwację', edit_reservation_path(@reservation) %> | <%= link_to 'Anuluj', root_path %>
+
+

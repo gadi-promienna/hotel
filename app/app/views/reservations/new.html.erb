@@ -1,5 +1,7 @@
-<h1>Rezerwacja</h1>
+<% if current_user %>	
+	<h1>Nowa rezerwacja</h1>
 
-<%= render 'form' %>
+	<%= render 'form' %>
+	<%= link_to 'Anuluj', rooms_path %>
 
-<%= link_to 'Powrót', reservations_path %>
+<% end %>

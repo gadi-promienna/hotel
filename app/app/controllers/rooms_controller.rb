@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
@@ -28,7 +29,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to @room, notice: 'Pokój został dodany.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class RoomsController < ApplicationController
   def update
     respond_to do |format|
       if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.html { redirect_to @room, notice: 'Informacje o pokoju zostały zaktualizowane.' }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class RoomsController < ApplicationController
   def destroy
     @room.destroy
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
+      format.html { redirect_to rooms_url, notice: 'Pokój został usunięty' }
       format.json { head :no_content }
     end
   end
@@ -71,4 +72,11 @@ class RoomsController < ApplicationController
     def room_params
       params.require(:room).permit(:number, :floor, :places, :standard)
     end
+
+    def require_login
+      unless current_user
+        flash[:error] = "Musisz być zalogowany, żeby wykonać tą akcję."
+        redirect_to new_session_url # halts request cycle
+      end
+  end
 end

@@ -1,14 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>App</title>
+  <title>System rezerwacji</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+ <div class="container">  
+  <div class="row">
+    <div class="col-md-6">
+      <br><%= render :partial => "layouts/menu" %>
+    </div>
+  </div> <br>
+        <div class="row">
+          <div class="col-md-4 col-ms-offset-1">
+            <h1>Pokoje</h1>
+            <!-- Wyświetlanie pokoi znajdujących się na poszczególnych piętrach -->
+              <% for num in (1..4) %>
+               <b> Piętro <%= num %> </b><br>
+                <ul>
+               <% @rooms = Room.all %>
+                  <% @rooms.where(floor: num).each do |room| %>
+                    <li> 
+                      Pokój <%= room.id %>,
+                      ilość miejsc: <%= room.places %>,
+                      standard: <%= room.standard %> <br>
+                    <% if(current_user) then %>
+                      <%= link_to 'Edytuj pokój', edit_room_path(room) %>
+                      <%= link_to 'Usuń pokój', room, method: :delete, data: { confirm: 'Na pewno chcesz skasować ten element?' } %> 
+                    <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+          </div>
 
+          <div class="col-md-6">
+
+        <%= yield %> <br> <br>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

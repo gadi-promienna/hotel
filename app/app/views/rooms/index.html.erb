@@ -1,25 +1,3 @@
 <p id="notice"><%= notice %></p>
-<div style="float:left">
-  <h1>Pokoje</h1>
-  <!-- Wyświetlanie pokoi znajdujących się na poszczególnych piętrach -->
-    <% for num in (1..4) %>
-     <b> Piętro <%= num %> </b><br>
-      <ul>
-        <% @rooms.where(floor: num).each do |room| %>
-          <li> 
-            Pokój <%= room.id %>,
-            ilość miejsc: <%= room.places %>,
-            standard: <%= room.standard %> <br>
-            <%= link_to 'Edytuj pokój', edit_room_path(room) %>
-            <%= link_to 'Usuń pokój', room, method: :delete, data: { confirm: 'Are you sure?' } %> 
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-</div>
-<div style="font-size: 18pt; float: left; margin: 2cm">
-<br>
-  <%= link_to 'Zaloguj się', new_reservation_path %> <br> <br>
-  <%= link_to 'Dodaj pokój', new_room_path %> <br> <br>
-  <%= link_to 'Nowa rezerwacja', new_reservation_path %> 
-</div>
+
+

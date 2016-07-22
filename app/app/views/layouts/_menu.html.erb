@@ -1,0 +1,14 @@
+
+
+  <% if(current_user) then %>
+    <b> Zalogowany jako <%= current_user.name_and_surname %>  <br> </b>
+      <%= link_to 'Wyloguj się', :logout %> |
+      <%= link_to 'Nowa rezerwacja', new_reservation_path %> |
+      <%= link_to 'Dodaj pokój', new_room_path %> |
+      <%= link_to 'Lista rezerwacji', reservations_path %>
+    <% else %>
+      <%= link_to 'Zaloguj się', :login %> 
+  <% end %>
+
+
+

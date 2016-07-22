@@ -2,15 +2,15 @@
 
 <h1>Lista rezerwacji</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Na imię</th>
       <th>Rezerwacja od</th>
       <th>Długość rezerwacji</th>
       <th>Pokój </th>
-      
-      <th colspan="3"></th>
+      <th>Osoba rejestrująca </th>
+      <th colspan="3" style="text-align: center" >Akcje</th>
     </tr>
   </thead>
 
@@ -20,7 +20,8 @@
         <td><%= reservation.name %></td>
         <td><%= reservation.start %></td>
         <td><%= reservation.days.to_s + " (doby hotelowe)"%></td>
-        <td><%= reservation.room %></td>
+        <td><%= reservation.room_id %></td>
+        <td><%= if(reservation.user) then reservation.user.name_and_surname end %></td>
         
         <td><%= link_to 'Szczegóły rezerwacji', reservation %></td>
         <td><%= link_to 'Edytuj rezerwację', edit_reservation_path(reservation) %></td>
@@ -32,4 +33,5 @@
 
 <br>
 
-<%= link_to 'New Reservation', new_reservation_path %>
+<%= link_to 'Anuluj', root_path %>
+
