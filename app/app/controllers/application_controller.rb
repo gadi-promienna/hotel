@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  #metoda przekierowująca osoby niezalogowane do strony logowania
   def authorize
   	redirect to '/login' unless current_user
   end

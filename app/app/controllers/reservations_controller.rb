@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
-  before_action :require_login
+  before_action :require_login, only: [:create, :show, :edit, :update, :destroy]
 
   # GET /reservations
   # GET /reservations.json
@@ -43,6 +43,8 @@ class ReservationsController < ApplicationController
   # PATCH/PUT /reservations/1.json
   def update
     respond_to do |format|
+      #automatyczne zapisywanie osoby robiącej rejestrację
+      reservation_params["user_id"] = current_user.id
       if @reservation.update(reservation_params)
         format.html { redirect_to @reservation, notice: 'Rezerwacja została zaktualizowana.' }
         format.json { render :show, status: :ok, location: @reservation }
@@ -78,7 +80,7 @@ class ReservationsController < ApplicationController
     def require_login
       unless current_user
         flash[:error] = "Musisz być zalogowany, żeby wykonać tą akcję."
-        redirect_to new_session_url # halts request cycle
+        redirect_to :login # halts request cycle
       end
     end
 end

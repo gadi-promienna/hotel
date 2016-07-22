@@ -15,45 +15,6 @@ body {
 }
 
 
-#main-menu li a:hover
-  {
-    color: black;
-
-
-  }
-
-a .jumbotron h1 
-  {
-    color: white;
-}
-
-.jumbotron:hover
-  { 
-    color: white;
-    text-shadow: 2px black;
-    background: white;
-    border-style: ridge;
-    border-width: 3px;
-    border-color: black;
-    border-radius: 25%;
-    background-repeat: repeat-y;
-    background-image: url("main-picture.gif");
-    background-position: left;
-
-    background-size: cover 4%;
-    
-  }
-
-  #user_nav a:hover
-  {
-    border-radius: 100px;
-    background-color: rgb(240, 240, 150 );
-    color: black;
-    padding: 5px;
-    margin: 1px;
-    text-decoration: none;
-    
-  }
 
 article,
 aside,

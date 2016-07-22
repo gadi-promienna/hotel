@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def new
   end
-
+#Tworzenie nowej sesji logowania. Komunikat o sukcesie albo ewentualnym błędzie.
   def create
   	user = User.authenticate(params[:email], params[:password])
     if user
@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  #Wylogowanie się.
   def destroy
   	session[:user_id] = nil
     redirect_to root_url, :notice => "Wylogowałeś się!"

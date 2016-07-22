@@ -1,14 +1,16 @@
+<% #Szablon z podstawowym menu %>
+<div id="menu">
+	  <% if(current_user) then %>
+	    <b> Zalogowany jako <%= current_user.name_and_surname %>  <br> </b>
+	      <%= link_to 'Wyloguj się', :logout %> |
+	      <%= link_to 'Nowa rezerwacja', new_reservation_path %> |
+	      <%= link_to 'Dodaj pokój', new_room_path %> |
+	      <%= link_to 'Lista rezerwacji', reservations_path %>
+	    <% else %>
+	      <% #Niezalogowana osoba ma dostęp tylko do opcji logowania. %>
+	      <%= link_to 'Zaloguj się', :login %> 
+	  <% end %>
 
-
-  <% if(current_user) then %>
-    <b> Zalogowany jako <%= current_user.name_and_surname %>  <br> </b>
-      <%= link_to 'Wyloguj się', :logout %> |
-      <%= link_to 'Nowa rezerwacja', new_reservation_path %> |
-      <%= link_to 'Dodaj pokój', new_room_path %> |
-      <%= link_to 'Lista rezerwacji', reservations_path %>
-    <% else %>
-      <%= link_to 'Zaloguj się', :login %> 
-  <% end %>
-
-
+</div>
+<br> <br>
 

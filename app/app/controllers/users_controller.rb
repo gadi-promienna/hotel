@@ -1,3 +1,4 @@
+# Users_controller może się przydać przy ewentualnej rozbudowie systemu do operacji na użytkownikach.
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 

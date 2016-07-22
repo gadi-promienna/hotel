@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :new, :create, :edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
@@ -73,10 +73,11 @@ class RoomsController < ApplicationController
       params.require(:room).permit(:number, :floor, :places, :standard)
     end
 
+    #Funkcja sprawdzająca, czy użytkownik jest zalogowany.
     def require_login
       unless current_user
         flash[:error] = "Musisz być zalogowany, żeby wykonać tą akcję."
-        redirect_to new_session_url # halts request cycle
+        redirect_to :login # halts request cycle
       end
   end
 end
