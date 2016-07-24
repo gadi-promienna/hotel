@@ -3,7 +3,7 @@ class Reservation < ActiveRecord::Base
   validates_presence_of :date_possible, message: " - Data niemożliwa"
   validates_presence_of :days, message: '- Błąd. Proszę podać długość rezerwacji.'
   validates_presence_of :start, message: '- Błąd. Proszę podać początkową datę rezerwacji.'
-  validates_presence_of :room_free, message: " - Nie da się zarejestrować pokoju."
+  validate :room_free
   belongs_to :room
   belongs_to :user
 

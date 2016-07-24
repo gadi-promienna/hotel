@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+jQuery.noConflict();  
+$(document).ready(function() {
+	
+	 
+	
+
+});
