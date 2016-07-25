@@ -23,7 +23,7 @@
           <td><%= reservation.room_id %></td>
           <td><%= if(reservation.user) then reservation.user.name_and_surname end %></td>
           
-          <td><%= link_to 'Szczegóły rezerwacji', reservation, data: { confirm: 'Czy na pewno chcesz zobaczyć rezerwację?' } %></td>
+          <td><%= link_to 'Szczegóły rezerwacji', reservation %></td>
           <td><%= link_to 'Edytuj rezerwację', edit_reservation_path(reservation) %></td>
           <td><%= link_to 'Odwołaj rezerwację', reservation, method: :delete, data: { confirm: 'Czy na pewno chcesz odwołać rezerwację?' } %></td>
         </tr>

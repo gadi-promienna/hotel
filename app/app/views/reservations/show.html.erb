@@ -1,31 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+<% if (current_user) then %>
+    <strong>Na nazwisko:</strong>
+    <%= @reservation.name %>
+  </p>
 
-  <strong>Na nazwisko:</strong>
-  <%= @reservation.name %>
-</p>
+  <p>
+    <strong>Początek rezerwacji:</strong>
+    <%= @reservation.start %> 
+     
+  </p>
 
-<p>
-  <strong>Początek rezerwacji:</strong>
-  <%= @reservation.start %> 
-   
-</p>
+  <p>
+    <strong>Doby hotelowe: </strong>
+    <%= @reservation.days %>
+  </p>
 
-<p>
-  <strong>Doby hotelowe: </strong>
-  <%= @reservation.days %>
-</p>
+  <p>
+    <strong>Pokój: </strong>
+    <%= @reservation.room_id %>
+  </p>
 
-<p>
-  <strong>Pokój: </strong>
-  <%= @reservation.room_id %>
-</p>
+  <p>
+    <strong>Osoba rejestrująca:</strong>
+    <%= if(@reservation.user) then @reservation.user.name_and_surname end %>
+  </p>
 
-<p>
-  <strong>Osoba rejestrująca:</strong>
-  <%= if(@reservation.user) then @reservation.user.name_and_surname end %>
-</p>
+  <%= link_to 'Edytuj rezerwację', edit_reservation_path(@reservation) %> | <%= link_to 'Lista rezerwacji', reservations_path %> | <%= link_to 'Anuluj', new_reservation_path %> 
 
-<%= link_to 'Edytuj rezerwację', edit_reservation_path(@reservation) %> | <%= link_to 'Anuluj', new_reservation_path %>
-
-
+<% end %>
