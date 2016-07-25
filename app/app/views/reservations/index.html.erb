@@ -1,37 +1,37 @@
 <p id="notice"><%= notice %></p>
+<% if(current_user) then %>
+  <h1>Lista rezerwacji</h1>
 
-<h1>Lista rezerwacji</h1>
-
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Na imię</th>
-      <th>Rezerwacja od</th>
-      <th>Długość rezerwacji</th>
-      <th>Pokój </th>
-      <th>Osoba rejestrująca </th>
-      <th colspan="3" style="text-align: center" >Akcje</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reservations.each do |reservation| %>
+  <table class="table table-bordered">
+    <thead>
       <tr>
-        <td><%= reservation.name %></td>
-        <td><%= reservation.start %></td>
-        <td><%= reservation.days.to_s + " (doby hotelowe)"%></td>
-        <td><%= reservation.room_id %></td>
-        <td><%= if(reservation.user) then reservation.user.name_and_surname end %></td>
-        
-        <td><%= link_to 'Szczegóły rezerwacji', reservation %></td>
-        <td><%= link_to 'Edytuj rezerwację', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Odwołaj rezerwację', reservation, method: :delete, data: { confirm: 'Czy na pewno chcesz odwołać rezerwację?' } %></td>
+        <th>Na imię</th>
+        <th>Rezerwacja od</th>
+        <th>Długość rezerwacji</th>
+        <th>Pokój </th>
+        <th>Osoba rejestrująca </th>
+        <th colspan="3" style="text-align: center" >Akcje</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @reservations.each do |reservation| %>
+        <tr>
+          <td><%= reservation.name %></td>
+          <td><%= reservation.start %></td>
+          <td><%= reservation.days.to_s + " (doby hotelowe)"%></td>
+          <td><%= reservation.room_id %></td>
+          <td><%= if(reservation.user) then reservation.user.name_and_surname end %></td>
+          
+          <td><%= link_to 'Szczegóły rezerwacji', reservation, data: { confirm: 'Czy na pewno chcesz zobaczyć rezerwację?' } %></td>
+          <td><%= link_to 'Edytuj rezerwację', edit_reservation_path(reservation) %></td>
+          <td><%= link_to 'Odwołaj rezerwację', reservation, method: :delete, data: { confirm: 'Czy na pewno chcesz odwołać rezerwację?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'Anuluj', root_path %>
+  <br>
 
+  <%= link_to 'Anuluj', new_reservation_path %>
+<% end %>

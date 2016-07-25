@@ -26,6 +26,6 @@
   <%= if(@reservation.user) then @reservation.user.name_and_surname end %>
 </p>
 
-<%= link_to 'Edytuj rezerwację', edit_reservation_path(@reservation) %> | <%= link_to 'Anuluj', root_path %>
+<%= link_to 'Edytuj rezerwację', edit_reservation_path(@reservation) %> | <%= link_to 'Anuluj', new_reservation_path %>
 
 

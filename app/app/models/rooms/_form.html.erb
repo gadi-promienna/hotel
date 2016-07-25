@@ -1,0 +1,24 @@
+<%= form_for(@room) do |f| %>
+  <% if @room.errors.any? %>
+      <ul>
+      <% @room.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+     <% end %>
+  <div class="field">
+    <%= f.label "Piętro" %><br>
+    <%= f.number_field :floor, :min=>'1', :max=>'4' %>
+  </div>
+  <div class="field">
+    <%= f.label "Ilosc miejsc" %><br>
+    <%= f.number_field :places, :min=>'1', :max=>'4' %>
+  </div>
+  <div class="field">
+    <%= f.label "Standard pokoju" %><br>
+    <%= f.select(:standard,[["normalny", "normalny"], ["podwyższony","podwyższony"], ["luksusowy", "luksusowy"]]) %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Dodaj pokój" %>
+  </div>
+<% end %>
